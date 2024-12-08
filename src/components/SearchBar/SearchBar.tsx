@@ -22,21 +22,24 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     <Container>
       <InputContainer>
         <Input
+          testID="search-input"
           placeholder="Search for a city"
           value={query}
           onChangeText={setQuery}
         />
-        <SearchIcon name="search" />
+        <SearchIcon name="search" testID="search-icon" />
       </InputContainer>
-      {loading && <Text>Loading...</Text>}
-
+      {loading && <Text testID="loading-text">Loading...</Text>}
       {suggestions.length > 0 && (
-        <SuggestionsList>
+        <SuggestionsList testID="suggestions-list">
           <FlatList
             data={suggestions}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
-              <Suggestion onPress={() => handleCitySelect(item.name)}>
+              <Suggestion
+                testID={`suggestion-${item.id}`}
+                onPress={() => handleCitySelect(item.name)}
+              >
                 {item.name} / {item.country}
               </Suggestion>
             )}

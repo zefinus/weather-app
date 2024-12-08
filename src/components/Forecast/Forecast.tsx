@@ -39,15 +39,22 @@ const Forecast: React.FC<HourlyForecastProps> = ({ forecast }) => {
         }: {
           item: HourlyForecastProps["forecast"][number];
         }) => (
-          <ForecastItem>
-            <HourContainer>
-              <Hour>{moment(item.time).format("h:mm")} </Hour>
+          <ForecastItem testID="forecast-item">
+            <HourContainer testID="hour-container">
+              <Hour testID="forecast-hour">
+                {moment(item.time).format("h:mm")}
+              </Hour>
               {item.condition.icon && (
-                <Icon source={{ uri: "http:" + item.condition.icon }} />
+                <Icon
+                  testID="forecast-icon"
+                  source={{ uri: "http:" + item.condition.icon }}
+                />
               )}
             </HourContainer>
 
-            <Temperature>{Math.round(item.temp_c)}°C</Temperature>
+            <Temperature testID="forecast-temperature">
+              {Math.round(item.temp_c)}°C
+            </Temperature>
           </ForecastItem>
         )}
         style={{ maxHeight: 250 }}
